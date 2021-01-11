@@ -9,8 +9,8 @@
   </button>
 </div>
 
-<ng-container *ngIf="todos$ | async as todos">
-  <div *ngFor="let todo of todos" class="mt-3">
+<ng-container *ngIf="todoState$ | async as todoState">
+  <div *ngFor="let todo of todoState.todos" class="mt-3">
     {{ todo.name }}
     <div class="btn-group btn-group-sm float-right">
       <button class="btn btn-info" (click)="updateTodo(todo)">
@@ -21,7 +21,7 @@
       </button>
     </div>
   </div>
-  <h3 *ngIf="todos.length === 0" class="mt-3">
+  <h3 *ngIf="todoState.todos.length === 0" class="mt-3">
     Aucun TODO trouvé, veuillez en rajouter.
   </h3>
 </ng-container>
