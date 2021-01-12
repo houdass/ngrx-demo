@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { TodoService } from '../todo.service';
 import * as fromTodoReducers from '../todo.reducers';
+import * as fromTodoActions from '../todo.actions';
 
 @Component({
   selector: 'app-todo-info',
@@ -18,6 +19,6 @@ export class TodoInfoComponent {
   }
 
   deleteAllTodos(): void {
-    this.store.dispatch({ type: 'DELETE_ALL_TODOS' });
+    this.store.dispatch(new fromTodoActions.DeleteAllTodos());
   }
 }

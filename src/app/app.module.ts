@@ -13,6 +13,6 @@ import { todoReducer } from './todo/todo.reducers';
 @NgModule({
   declarations: [AppComponent, TodoListComponent, TodoInfoComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule, StoreModule.forRoot({ todo: todoReducer })],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

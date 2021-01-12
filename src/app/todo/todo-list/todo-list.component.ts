@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
 import * as fromTodoReducers from '../todo.reducers';
+import * as fromTodoActions from '../todo.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -23,7 +24,7 @@ export class TodoListComponent {
 
   addTodo(name: string): void {
     const todo: Todo = new Todo(name);
-    this.store.dispatch({ type: 'ADD_TODO', payload: todo });
+    this.store.dispatch(new fromTodoActions.AddTodo(todo));
     this.name = '';
   }
 
@@ -35,12 +36,12 @@ export class TodoListComponent {
 
   confirmTodo(name: string): void {
     this.selectedTodo = { ...this.selectedTodo, name };
-    this.store.dispatch({ type: 'UPDATE_TODO', payload: this.selectedTodo });
+    this.store.dispatch(new fromTodoActions.UpdateTodo(this.selectedTodo));
     this.isEdit = false;
     this.name = '';
   }
 
   deleteTodo(todo: Todo): void {
-    this.store.dispatch({ type: 'DELETE_TODO', payload: todo.id });
+    this.store.dispatch(new fromTodoActions.DeleteTodo(todo.id));
   }
 }

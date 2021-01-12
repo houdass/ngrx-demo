@@ -166,6 +166,7 @@ export class TodoListComponent implements OnInit {
   addTodo(name: string): void {
     const todo: Todo = new Todo(name);
     this.todoService.add(todo);
+    this.name = '';
   }
 
   updateTodo(todo: Todo): void {
