@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "name": "Learn Webpack"
+    },
+    {
+      "id": 2,
+      "name": "Learn Angular"
+    },
+    {
+      "id": 3,
+      "name": "Learn RxJS"
+    },
+    {
+      "id": 4,
+      "name": "Learn NgRx"
+    },
+    {
+      "name": "Learn Something",
+      "id": 5
+    }
+  ]
+}

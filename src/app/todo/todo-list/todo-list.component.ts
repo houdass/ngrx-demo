@@ -16,6 +16,8 @@ import * as fromTodoSelectors from '../todo.selectors';
 export class TodoListComponent {
   todos$: Observable<Todo[]>;
   count$: Observable<number>;
+  loading$: Observable<boolean>;
+
   isEdit = false;
   name: string;
   selectedTodo: Todo;
@@ -23,6 +25,7 @@ export class TodoListComponent {
   constructor(private todoService: TodoService, private store: Store<fromTodoReducers.State>) {
     this.todos$ = store.pipe(select(fromTodoSelectors.selectAll));
     this.count$ = store.pipe(select(fromTodoSelectors.selectTotal));
+    this.loading$ = store.pipe(select(fromTodoSelectors.selectLoading));
   }
 
   addTodo(name: string): void {

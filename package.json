@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format:fix": "pretty-quick --bail --staged --pattern 'src/**/*.{json,scss,ts}'"
+    "format:fix": "pretty-quick --bail --staged --pattern 'src/**/*.{json,scss,ts}'",
+    "db": "json-server --watch db.json"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.0.3",
     "@angular/router": "~11.0.3",
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@ngrx/effects": "^10.1.2",
     "@ngrx/entity": "^10.1.2",
     "@ngrx/store": "^10.1.2",
     "bootstrap": "^4.5.3",
@@ -38,6 +40,7 @@
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "json-server": "^0.16.3",
     "karma": "~5.1.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",

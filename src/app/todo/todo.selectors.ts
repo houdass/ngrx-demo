@@ -14,3 +14,5 @@ export const {
 export const selectAll = createSelector(getTodoState, selectAllTodos);
 export const selectTotal = createSelector(getTodoState, count);
 export const selectLastUpdate = createSelector(getTodoState, (state: State): string => state.lastUpdate);
+export const selectLoading = createSelector(getTodoState, (state: State): boolean => state.loading);
+export const selectError = createSelector(getTodoState, (state: State): string => state.error);

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {Store} from '@ngrx/store';
+
+import * as fromTodoReducers from './todo/todo.reducers';
+import * as fromTodoActions from './todo/todo.actions';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngrx-demo';
+ constructor(private store: Store<fromTodoReducers.State>) {
+   this.store.dispatch(new fromTodoActions.GetTodos());
+ }
 }
