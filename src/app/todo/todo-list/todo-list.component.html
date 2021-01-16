@@ -9,19 +9,17 @@
   </button>
 </div>
 
-<ng-container *ngIf="todoState$ | async as todoState">
-  <div *ngFor="let todo of todoState.todos" class="mt-3">
-    {{ todo.name }}
-    <div class="btn-group btn-group-sm float-right">
-      <button class="btn btn-info" (click)="updateTodo(todo)">
-        <span class="fa fa-edit"></span>
-      </button>
-      <button class="btn btn-danger" (click)="deleteTodo(todo)">
-        <span class="fa fa-trash"></span>
-      </button>
-    </div>
+<div *ngFor="let todo of todos$ | async" class="mt-3">
+  {{ todo.name }}
+  <div class="btn-group btn-group-sm float-right">
+    <button class="btn btn-info" (click)="updateTodo(todo)">
+      <span class="fa fa-edit"></span>
+    </button>
+    <button class="btn btn-danger" (click)="deleteTodo(todo)">
+      <span class="fa fa-trash"></span>
+    </button>
   </div>
-  <h3 *ngIf="todoState.todos.length === 0" class="mt-3">
-    Aucun TODO trouvé, veuillez en rajouter.
-  </h3>
-</ng-container>
+</div>
+<h3 *ngIf="(count$ | async) === 0" class="mt-3">
+  Aucun TODO trouvé, veuillez en rajouter.
+</h3>

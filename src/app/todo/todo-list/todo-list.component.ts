@@ -7,19 +7,22 @@ import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
 import * as fromTodoReducers from '../todo.reducers';
 import * as fromTodoActions from '../todo.actions';
+import * as fromTodoSelectors from '../todo.selectors';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
 })
 export class TodoListComponent {
-  todoState$: Observable<fromTodoReducers.State>;
+  todos$: Observable<Todo[]>;
+  count$: Observable<number>;
   isEdit = false;
   name: string;
   selectedTodo: Todo;
 
   constructor(private todoService: TodoService, private store: Store<fromTodoReducers.State>) {
-    this.todoState$ = store.pipe(select('todo'));
+    this.todos$ = store.pipe(select(fromTodoSelectors.selectAll));
+    this.count$ = store.pipe(select(fromTodoSelectors.selectTotal));
   }
 
   addTodo(name: string): void {

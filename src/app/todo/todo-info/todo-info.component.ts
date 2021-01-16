@@ -6,16 +6,19 @@ import { Observable } from 'rxjs';
 import { TodoService } from '../todo.service';
 import * as fromTodoReducers from '../todo.reducers';
 import * as fromTodoActions from '../todo.actions';
+import * as fromTodoSelectors from '../todo.selectors';
 
 @Component({
   selector: 'app-todo-info',
   templateUrl: './todo-info.component.html',
 })
 export class TodoInfoComponent {
-  todoState$: Observable<fromTodoReducers.State>;
+  count$: Observable<number>;
+  lastUpdate$: Observable<string>;
 
   constructor(private todoService: TodoService, private store: Store<fromTodoReducers.State>) {
-    this.todoState$ = store.pipe(select('todo'));
+    this.count$ = store.pipe(select(fromTodoSelectors.selectTotal));
+    this.lastUpdate$ = store.pipe(select(fromTodoSelectors.selectLastUpdate));
   }
 
   deleteAllTodos(): void {

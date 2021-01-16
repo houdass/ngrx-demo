@@ -1,6 +1,7 @@
 <h3>TODO Info</h3>
-<h5>Total des todos: {{ (todoState$ | async)?.todos?.length }}</h5>
-<!-- <h5>Dernière mise à jour: {{ lastUpdate$ | async | date:'mediumTime' }}</h5> -->
+
+<h5>Total des todos: {{ count$ | async }}</h5>
+<h5>Dernière mise à jour: {{ lastUpdate$ | async | date:'mediumTime' }}</h5>
 
 <button class="btn btn-danger btn-sm" (click)="deleteAllTodos()">
   Tout supprimer
