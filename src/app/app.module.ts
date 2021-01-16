@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,8 +23,9 @@ import { TodoEffects } from './todo/todo.effects';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({ todo: todoReducer }),
+    StoreModule.forRoot({ todo: todoReducer, router: routerReducer }),
     EffectsModule.forRoot([TodoEffects]),
+    StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
   ],
   bootstrap: [AppComponent],

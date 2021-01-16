@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@ngrx/effects": "^10.1.2",
     "@ngrx/entity": "^10.1.2",
+    "@ngrx/router-store": "^10.1.2",
     "@ngrx/store": "^10.1.2",
     "bootstrap": "^4.5.3",
     "rxjs": "~6.6.0",
