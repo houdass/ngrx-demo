@@ -1,4 +1,6 @@
 import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
+
 import { Todo } from './todo.model';
 
 export enum TodoActionsTypes {
@@ -17,7 +19,7 @@ export class AddTodo implements Action {
 export class UpdateTodo implements Action {
   readonly type = TodoActionsTypes.UPDATE_TODO;
 
-  constructor(public payload: Todo) {}
+  constructor(public payload: Update<Todo>) {}
 }
 
 export class DeleteTodo implements Action {

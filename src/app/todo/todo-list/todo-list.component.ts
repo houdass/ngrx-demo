@@ -39,7 +39,7 @@ export class TodoListComponent {
 
   confirmTodo(name: string): void {
     this.selectedTodo = { ...this.selectedTodo, name };
-    this.store.dispatch(new fromTodoActions.UpdateTodo(this.selectedTodo));
+    this.store.dispatch(new fromTodoActions.UpdateTodo({ id: this.selectedTodo.id, changes: this.selectedTodo }));
     this.isEdit = false;
     this.name = '';
   }
