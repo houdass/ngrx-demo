@@ -4,7 +4,6 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Todo } from '../todo.model';
-import { TodoService } from '../todo.service';
 import * as fromTodoReducers from '../todo.reducers';
 import * as fromTodoActions from '../todo.actions';
 import * as fromTodoSelectors from '../todo.selectors';
@@ -22,7 +21,7 @@ export class TodoListComponent {
   name: string;
   selectedTodo: Todo;
 
-  constructor(private todoService: TodoService, private store: Store<fromTodoReducers.State>) {
+  constructor(private store: Store<fromTodoReducers.State>) {
     this.todos$ = store.pipe(select(fromTodoSelectors.selectAll));
     this.count$ = store.pipe(select(fromTodoSelectors.selectTotal));
     this.loading$ = store.pipe(select(fromTodoSelectors.selectLoading));
@@ -30,7 +29,7 @@ export class TodoListComponent {
 
   addTodo(name: string): void {
     const todo: Todo = new Todo(name);
-    this.store.dispatch(new fromTodoActions.AddTodo(todo));
+    this.store.dispatch(fromTodoActions.addTodo({ todo }));
     this.name = '';
   }
 
@@ -42,12 +41,12 @@ export class TodoListComponent {
 
   confirmTodo(name: string): void {
     this.selectedTodo = { ...this.selectedTodo, name };
-    this.store.dispatch(new fromTodoActions.UpdateTodo({ id: this.selectedTodo.id, changes: this.selectedTodo }));
+    this.store.dispatch(fromTodoActions.updateTodo({ todo: { id: this.selectedTodo.id, changes: this.selectedTodo } }));
     this.isEdit = false;
     this.name = '';
   }
 
   deleteTodo(todo: Todo): void {
-    this.store.dispatch(new fromTodoActions.DeleteTodo(todo.id));
+    this.store.dispatch(fromTodoActions.deleteTodo({ id: todo.id }));
   }
 }

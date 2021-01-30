@@ -16,7 +16,7 @@ export class AppComponent {
   currentUrl$: Observable<string>;
 
   constructor(private store: Store<{ todo: fromTodoReducers.State; router: RouterReducerState }>) {
-    this.store.dispatch(new fromTodoActions.GetTodos());
+    this.store.dispatch(fromTodoActions.getTodos());
     this.currentUrl$ = this.store.pipe(select(fromRouterSelectors.selectUrl));
   }
 }

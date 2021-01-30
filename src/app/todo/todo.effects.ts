@@ -1,4 +1,4 @@
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -12,13 +12,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TodoEffects {
-  @Effect()
-  getTodos$: Observable<Action> = this.actions$.pipe(
-    ofType(fromTodoActions.TodoActionsTypes.GET_TODOS),
-    switchMap(() =>
-      this.todoService.getAll().pipe(
-        map((todos: Todo[]) => new fromTodoActions.GetTodosSuccess(todos)),
-        catchError((err: string) => of(new fromTodoActions.GetTodosError(err))),
+  getTodos$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromTodoActions.getTodos.type),
+      switchMap(() =>
+        this.todoService.getAll().pipe(
+          map((todos: Todo[]) => fromTodoActions.getTodosSuccess({ todos })),
+          catchError((error: string) => of(fromTodoActions.getTodosError({ error }))),
+        ),
       ),
     ),
   );
